@@ -24,16 +24,17 @@ public class DemoApplication {
 			StudentRepository repository,
 			MongoTemplate mongoTemplate
 	){
+		String email = "mac2394q@gmail.com";
 		return args -> {
 			address adress = new address( "colombia",
 					"tulua",
 					"057000");
 
-			String email = "mac2394q@gmail.com";
+
 			Student student = new Student(
 					"miguel",
 					"claros",
-					"mac2394q@gmail.com",
+					email,
 					Gender.MALE,
 					adress,
 					List.of("senior enginer"),
@@ -41,20 +42,33 @@ public class DemoApplication {
 					LocalDateTime.now()
 			);
 
-			Query query = new Query();
-			query.addCriteria( Criteria.where( "email" ).is( email )  );
-
-			List< Student > students = mongoTemplate.find( query, Student.class );
-			if(  students.size() > 1 ){
-				throw new IllegalStateException(" found many students with email "+email);
-			}
-
-			if( students.isEmpty() ){
+			//usingMongoTemplateAndQuery( repository, mongoTemplate,email,student );
+			repository.findStudentByEmail(email).ifPresentOrElse( s -> {
+				System.out.println( "already exists "+s );
+			}, () -> {
+				System.out.println ( "inserting student "+student );
 				repository.insert( student );
-			}
-	
-
+			});
 		};
+	}
+
+	private void usingMongoTemplateAndQuery(  StudentRepository repository, MongoTemplate mongoTemplate, String email, Student student ){
+
+		Query query = new Query();
+		query.addCriteria( Criteria.where( "email" ).is( email )  );
+
+		List< Student > students = mongoTemplate.find( query, Student.class );
+		if(  students.size() > 1 ){
+			throw new IllegalStateException(" found many students with email "+email);
+		}
+
+		if( students.isEmpty() ){
+			System.out.println ( "inserting student "+student );
+			repository.insert( student );
+		}else{
+			System.out.println( "already exists "+student );
+		}
+
 	}
 
 
