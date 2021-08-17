@@ -1,0 +1,6 @@
+
+C:\Users\UserName\AppData\Local\Docker\wsl\data\ext4.vhdx
+
+\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes
+
+C:\Users\Public\Documents\Hyper-V\Virtual hard disks

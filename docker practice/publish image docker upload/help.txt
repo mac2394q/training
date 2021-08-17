@@ -1,0 +1,35 @@
+command
+
+tag name : 
+
+docker tag billingapp:prod  billingapp:0.0.1
+
+login :
+
+docker login - usar credenciales 
+docker login -u priceleggan -p ftsuser420
+
+$ docker login
+<enter user name and password for Docker Hub Repository>
+
+$ docker tag first-image {docker-hub-username}/{default-repo-folder-name}:first-image
+
+$ docker push {docker-hub-username}/{default-repo-folder-name}:first-image
+
+e.g. I have public repository like manjeet86/docker-repo so commands would be:
+
+$ docker tag first-image manjeet86/docker-repo:first-image
+
+$ docker push manjeet86/docker-repo:first-image
+
+
+
+upload image :
+
+
+docker push  billingapp:0.0.1
+
+
+
+
+

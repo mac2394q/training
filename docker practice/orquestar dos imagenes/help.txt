@@ -1,0 +1,14 @@
+commands list:
+
+execute with default name :
+
+docker-compose pull 
+
+execute with custom name:
+
+docker-compose -f stackdb.yml pull
+
+
+inicialize:
+
+docker-compose -f stackdb.yml up -d
