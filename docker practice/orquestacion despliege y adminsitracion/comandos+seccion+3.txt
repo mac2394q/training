@@ -1,0 +1,50 @@
+Eliminar todos los contenedores detenidos
+
+docker system prune
+
+Eliminar todas las imágenes
+
+docker rmi $(docker images -a -q)
+
+Listar los volumenes
+
+docker volume ls 
+
+Eliminar todos los volumenes
+
+docker volume prune
+
+Construir las imagenes definidas en la orquestación
+
+docker-compose -f stack-billing.yml build
+
+Inicializar los contenedores de los servicios de la orquestación
+
+docker-compose -f stack-billing.yml up -d
+
+Detener todos los servicios de la orquestación
+
+docker-compose -f stack-billing.yml stop
+
+Escalar un servicio al iniciar la orquestación
+
+docker-compose -f stack-billing.yml up --scale  billingapp-front=3 -d --force-recreate
+Detener todos los contenedores
+
+docker stop $(docker ps -a -q)
+
+Listar las redes virtuales
+
+docker network ls
+
+Eliminar las redes virtuales
+
+docker network prune
+
+reconstruir las imagenes
+
+docker-compose -f stack-billing.yml build --no-cache
+
+reconstruir los contenedores d ela orquestación
+
+docker-compose -f stack-billing.yml up -d --force-recreate
